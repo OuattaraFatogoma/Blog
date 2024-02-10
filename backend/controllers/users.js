@@ -2,13 +2,18 @@ const {StatusCodes} = require('http-status-codes');
 const Users = require('../models/users');
 
 const login = async(req, res) =>{
-    res.send("login");
+    const {username, password} = req.body;
+    const user = await Users.findOne({username});
+    if(!user) return res.status(StatusCodes.NOT_FOUND).send({message: 'User not found'});
+    const isPasswordConfirm = await user.comparePassword(password);
+    if(!isPasswordConfirm) return res.status(StatusCodes.UNAUTHORIZED).send({message: 'Invalid password supplied'});
+    const token = await user.generateToken();
+    res.status(StatusCodes.OK).send({username, token})
 }
 
 const register = async(req, res) => {
     const {username, email, password, role} = req.body;
     const newUser = await Users.create({username, email, password, role});
-    console.log(newUser);
     const token = await newUser.generateToken();
     res.status(StatusCodes.CREATED).send({message: "User created", username, token})
 }
