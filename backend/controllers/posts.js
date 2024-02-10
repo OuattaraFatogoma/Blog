@@ -1,4 +1,4 @@
-const {StatusCodes} = require('http-status-code');
+const {StatusCodes} = require('http-status-codes');
 
 const getAllPosts = async(req, res) =>{
     res.send("All posts");
