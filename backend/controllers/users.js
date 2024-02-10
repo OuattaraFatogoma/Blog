@@ -39,7 +39,15 @@ const updateUser = async(req, res) => {
 }
 
 const deleteUser = async(req, res) => {
-    res.send("Delete User");
+    const {username, password} = req.body;
+    const userId  = req.userId; 
+    const user = await Users.findOne({username});
+    if(!user) return res.status(StatusCodes.NOT_FOUND).send({message: 'User not found'});
+    const isPasswordConfirm = await user.comparePassword(password);
+    if(user["_id"] != userId || !isPasswordConfirm) return res.status(StatusCodes.UNAUTHORIZED).send({message: 'Not authorized'});
+
+    const userDeleted = await Users.findOneAndDelete({username}).select(["username","email", "role","-_id"]); 
+    res.status(StatusCodes.OK).send({message: "User profile deleted", userDeleted})
 }
 
 module.exports = {login, register, logout, updateUser, deleteUser}

@@ -7,6 +7,6 @@ const router = express.Router();
 router.post('/login', login);
 router.post('/logout', logout);
 router.post('/register', register);
-router.route('/:id').patch(authMiddleware, updateUser).delete(authMiddleware, deleteUser);
-
+router.patch('/update', authMiddleware, updateUser)
+router.delete('/delete', authMiddleware, deleteUser);
 module.exports = router;
