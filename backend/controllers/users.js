@@ -6,7 +6,7 @@ const login = async(req, res) =>{
     const user = await Users.findOne({username});
     if(!user) return res.status(StatusCodes.NOT_FOUND).send({message: 'User not found'});
     const isPasswordConfirm = await user.comparePassword(password);
-    if(!isPasswordConfirm) return res.status(StatusCodes.UNAUTHORIZED).send({message: 'Invalid password supplied'});
+    if(!isPasswordConfirm) return res.status(StatusCodes.UNAUTHORIZED).send({message: 'Invalid password'});
     const token = await user.generateToken();
     res.status(StatusCodes.OK).send({username, token})
 }
@@ -19,11 +19,23 @@ const register = async(req, res) => {
 }
 
 const logout = async(req, res) => {
-    res.send("logout");
+    res.status(StatusCodes.OK).send({token: ""})
 }
 
 const updateUser = async(req, res) => {
-    res.send("update User");
+    const {pastUsername, username, email, password, role} = req.body;
+    const userId  = req.userId; 
+    const user = await Users.findOne({username: pastUsername});
+    if(!user) return res.status(StatusCodes.NOT_FOUND).send({message: 'User not found'});
+    if(user["_id"] != userId) return res.status(StatusCodes.UNAUTHORIZED).send({message: 'Not authorized'});
+
+    const userEdit = {};
+    if(username) userEdit.username = username;
+    if(email) userEdit.email = email;
+    if(role) userEdit.role = role;
+    // TODO: if(password) handle password change
+    const userUpdate = await Users.findOneAndUpdate({username: pastUsername}, userEdit, {new: true, runValidators: true}).select(["username","email", "role","-_id"]); 
+    res.status(StatusCodes.OK).send({message: "User profile update", userUpdate})
 }
 
 const deleteUser = async(req, res) => {
