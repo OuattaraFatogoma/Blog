@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 
 // import routes
 const usersRoutes = require('./routes/users');
+const postsRoutes = require('./routes/posts');
 
 // security 
 const cors = require('cors');
@@ -14,6 +15,7 @@ const port = process.env.PORT || 5000;
 
 // routes 
 app.use("/api/v1/users", usersRoutes);
+app.use("/api/v1/posts", postsRoutes);
 
 const start = async() => {
     try {
