@@ -18,7 +18,8 @@ const PostSchema = mongoose.Schema({
         required: [true, "Please enter a content"]
     },
     author:{
-        type: String,
+        type: mongoose.Types.ObjectId,
+        ref: "Users",
         required: [true, "Author require"]
     },
 }, {timestamps: true});
