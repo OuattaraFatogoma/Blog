@@ -35,3 +35,8 @@ button:hover {
   background-color: #5258d0;
 }
 
+section{
+  margin: auto;
+  margin-top: 2rem;
+  padding: 0 1rem;
+}

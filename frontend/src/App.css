@@ -35,3 +35,69 @@
 .header .logoutBtn:hover{
     background-color: rgb(169, 0, 0);
 }
+
+
+/* Post Container */
+.postContainer{
+    max-width: 800px;
+    width: 80%;
+}
+
+.postCard{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    gap: 1rem;
+}
+
+.postCard .postBody{
+    min-width: 320px;
+    flex: 2;
+}
+
+.postCard .title{
+    font-size: 1.5rem;
+    margin-bottom: 0;
+}
+
+.postCard .summary{
+    font-size: 1.2rem;
+    margin-bottom: .2rem;
+    opacity: .7;
+}
+
+.postCard .postCover{
+    min-width: 200px;
+    margin: auto;
+    flex: 1;
+}
+
+.postCard .postCover img{
+    width: 100%;
+    object-fit: cover;
+}
+
+.postCard .info{
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (max-width: 550px) {
+    .postContainer{
+        width: 100%;
+    }
+    .postCard .postBody{
+        min-width: 100%;
+    }
+}
+@media (max-width: 350px) {
+    .postCard .title{
+        font-size: 1.2rem;
+    }
+    
+    .postCard .summary, .postCard .info{
+        font-size: .8rem;
+    }
+}
