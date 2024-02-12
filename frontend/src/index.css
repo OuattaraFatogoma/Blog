@@ -40,3 +40,8 @@ section{
   margin-top: 2rem;
   padding: 0 1rem;
 }
+@media (max-width: 550px) {
+  section{
+      width: 100%;
+  }
+}

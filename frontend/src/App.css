@@ -20,11 +20,11 @@
     padding: 0 .5rem;
 }
 
-.header .registerBtn{
+.registerBtn{
     background-color: rgb(213, 117, 0);
 }
 
-.header .registerBtn:hover{
+.registerBtn:hover{
     background-color: rgb(200, 110, 0);
 }
 
@@ -85,9 +85,6 @@
 }
 
 @media (max-width: 550px) {
-    .postContainer{
-        width: 100%;
-    }
     .postCard .postBody{
         min-width: 100%;
     }
@@ -100,4 +97,25 @@
     .postCard .summary, .postCard .info{
         font-size: .8rem;
     }
+}
+
+/* User form */
+.userForm{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: auto;
+    text-align: center;
+    padding: 1rem;
+    padding-bottom: 2.5rem;
+    border-radius: 5px;
+    box-shadow: 0 0 .5rem 0 #888;
+}
+
+.userForm input, .userForm select{
+    padding: .5rem 0.3rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
 }

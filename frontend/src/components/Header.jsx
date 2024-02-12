@@ -8,7 +8,7 @@ function Header() {
 
   return (
     <div className='header'>
-      <h2>Blog</h2>
+      <h2><Link to="/">Blog</Link></h2>
       <nav>
         {
           isLogin
