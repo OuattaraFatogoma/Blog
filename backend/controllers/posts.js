@@ -58,8 +58,8 @@ const deletePost = async(req, res) =>{
     if(!post) return res.status(StatusCodes.NOT_FOUND).send({message: 'No post found'});
     if(post.author != author) return res.status(StatusCodes.UNAUTHORIZED).send({message: 'Not authorized'});
 
-    //const postdelete = await Posts.findOneAndDelete({_id: postId});
-    res.status(StatusCodes.OK).send({post});
+    const postdelete = await Posts.findOneAndDelete({_id: postId});
+    res.status(StatusCodes.OK).send({postdelete});
 }
 
 module.exports = {getAllPosts, createPost, getPost, updatePost, deletePost}
