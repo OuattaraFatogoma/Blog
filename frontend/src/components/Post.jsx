@@ -1,18 +1,36 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { format } from "date-fns";
+
 
 function Post() {
-  const title = "I tasted the future of EV charging and it was delicious.";
-  const author = "Carter Gibson";
-  const createdAt = "Feb 9, 2024";
-  const cover = "https://miro.medium.com/v2/resize:fill:250:168/1*FEpjdpIyuKt9pmJOJD8IFw.jpeg"
-  const content = "<h2>Some content</h2>";
-  const contentContainer = useRef(null);
+  const url = "http://localhost:5000/api/v1/posts/"
+  const [post, setPost] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const isWriter = false;
   const {id} = useParams();
 
+  const fetchPost = async () =>{
+    try {
+      setIsLoading(true);
+      const response = await axios.get(url+id);
+      const post = response.data;
+      setPost(post);
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error);
+    }
+  }
+
   useEffect(()=>{
-    contentContainer.current.innerHTML = content;
-  }, [])
+    fetchPost();
+  }, []) 
+
+  if(isLoading) return "Loading...";
+  const {title, author, createdAt, cover, content } = post;
 
   return (
     <section>
@@ -23,11 +41,14 @@ function Post() {
             <img src={cover} alt={title} />
           </div>
           <div className='info'>
-            <span>{author}</span>
-            <span>{createdAt}</span>
+            <span>{author.username}</span>
+            {
+              isWriter && <button>Edit Post</button>
+            }
+            <span>{format(new Date(createdAt), "MMM dd, yyyy")}</span>
           </div>
         </div>
-        <div ref={contentContainer} className='content'/>
+        <div dangerouslySetInnerHTML={{__html:content}} className='content'/>
       </div>
     </section>
   )
