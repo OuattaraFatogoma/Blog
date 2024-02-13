@@ -3,7 +3,7 @@ const fs = require('fs');
 const Posts = require('../models/posts');
 
 const getAllPosts = async(req, res) =>{
-    const posts = await Posts.find().sort("-createdAt");
+    const posts = await Posts.find().sort("-createdAt").populate("author", ["username", "-_id"]);
     res.status(StatusCodes.OK).json(posts);
 }
 
@@ -23,7 +23,7 @@ const createPost = async(req, res) =>{
 
 const getPost = async(req, res) =>{
     const postId = req.params.id;
-    const posts = await Posts.findById(postId);
+    const posts = await Posts.findById(postId).populate("author", ["username", "-_id"]);
     res.status(StatusCodes.OK).json(posts);
 }
 
