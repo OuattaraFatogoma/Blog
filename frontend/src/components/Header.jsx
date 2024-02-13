@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 
 function Header() {
-  const [isLogin, setIsLogin] = useState(false);
-  const [isWriter, setIsWriter] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
+  const [isWriter, setIsWriter] = useState(true);
 
   return (
     <div className='header'>
@@ -25,7 +25,6 @@ function Header() {
           </>
         }
       </nav>
-      
     </div>
   )
 }
