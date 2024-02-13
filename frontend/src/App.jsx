@@ -13,7 +13,7 @@ function App() {
         <Route path='/login' element={<LoginForm/>}/>
         <Route path='/register' element={<RegisterForm/>}/>
         <Route path='/createPost' element={<PostForm isCreatePost={true}/>}/>
-        <Route path='/editPost' element={<PostForm isCreatePost={false}/>}/>
+        <Route path='/editPost/:id' element={<PostForm isCreatePost={false}/>}/>
         <Route path='/post/:id' element={<Post/>}/>
       </Routes>
     </>

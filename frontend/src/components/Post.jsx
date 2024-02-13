@@ -1,15 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { format } from "date-fns";
+import { useGlobalContext } from '../context';
 
 
 function Post() {
+  const {user} = useGlobalContext();
   const url = "http://localhost:5000/api/v1/posts/"
   const [post, setPost] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
-  const isWriter = false;
   const {id} = useParams();
 
   const fetchPost = async () =>{
@@ -43,7 +43,7 @@ function Post() {
           <div className='info'>
             <span>{author.username}</span>
             {
-              isWriter && <button>Edit Post</button>
+              user && (user.username === author.username && <Link to={`/editPost/${id}`}><button>Edit Post</button></Link>)
             }
             <span>{format(new Date(createdAt), "MMM dd, yyyy")}</span>
           </div>
