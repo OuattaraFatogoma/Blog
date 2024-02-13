@@ -8,14 +8,14 @@ const login = async(req, res) =>{
     const isPasswordConfirm = await user.comparePassword(password);
     if(!isPasswordConfirm) return res.status(StatusCodes.UNAUTHORIZED).send({message: 'Invalid password'});
     const token = await user.generateToken();
-    res.status(StatusCodes.OK).send({username, token})
+    res.status(StatusCodes.OK).send({user:{username, role: user.role}, token})
 }
 
 const register = async(req, res) => {
     const {username, email, password, role} = req.body;
     const newUser = await Users.create({username, email, password, role});
     const token = await newUser.generateToken();
-    res.status(StatusCodes.CREATED).send({message: "User created", username, token})
+    res.status(StatusCodes.CREATED).send({message: "User created", user:{username, role}, token})
 }
 
 const logout = async(req, res) => {

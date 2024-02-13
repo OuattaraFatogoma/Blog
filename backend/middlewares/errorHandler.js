@@ -20,7 +20,7 @@ const errorHandlerMiddleware = (err, req, res, next) =>{
         customError.statusCode = StatusCodes.NOT_FOUND;
       }
     
-      return res.status(customError.statusCode).send({ msg: customError.msg })
+      return res.status(customError.statusCode).send({ message: customError.msg })
 }
 
 module.exports = errorHandlerMiddleware;
