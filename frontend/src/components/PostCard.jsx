@@ -20,7 +20,7 @@ function PostCard() {
         </div>
       </div>
       <div className='postCover'>
-        <Link to={`post/${id}`}><img src={cover} alt={title} /></Link>
+        <Link to={`/post/${id}`}><img src={cover} alt={title} /></Link>
       </div>
     </div>
   )
