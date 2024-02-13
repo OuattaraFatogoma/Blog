@@ -1,10 +1,23 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useGlobalContext } from '../context';
 
 
 function Header() {
-  const [isLogin, setIsLogin] = useState(true);
-  const [isWriter, setIsWriter] = useState(true);
+  const {user, setUser} = useGlobalContext();
+  const [isLogin, setIsLogin] = useState(false);
+  const [isWriter, setIsWriter] = useState(false);
+  
+  useEffect(()=>{
+    setIsLogin(user ? true : false);
+    setIsWriter(user ? user.role==="writer" ? true : false : false);
+  }, [user, setUser])
+
+  const handleLogout = async () => {
+    setUser(null);
+    window.localStorage.removeItem("data");
+  }
+
 
   return (
     <div className='header'>
@@ -14,9 +27,9 @@ function Header() {
           isLogin
           ?
           <>
-              <p>User name</p>
+              <p>{user && user.username}</p>
               {isWriter && <Link to="/createPost">New Post</Link>}
-              <button className='logoutBtn'>Logout</button>
+              <button className='logoutBtn' onClick={handleLogout}>Logout</button>
           </>
           :
           <>

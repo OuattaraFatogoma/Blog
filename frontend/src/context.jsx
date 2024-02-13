@@ -2,10 +2,15 @@ import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 
 const AppContext = createContext();
-const url = "http://localhost:5000/api/v1/posts"
+const url = "http://localhost:5000/api/v1/posts";
+
+const data = JSON.parse(window.localStorage.getItem("data"));
+
 export const AppProvider = ({children}) =>{
+    
     const [posts, setPosts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [user, setUser] = useState(data ? data.user : null);
 
     const fetchPosts = async () => {
         try {
@@ -29,6 +34,8 @@ export const AppProvider = ({children}) =>{
         <AppContext.Provider value={{
             posts,
             isLoading,
+            user,
+            setUser,
         }}>
             {children}
         </AppContext.Provider>
