@@ -9,6 +9,6 @@ const upload = multer({dest: 'assets/uploads/'});
 
 
 router.route('/').get(getAllPosts).post(authMiddleware, upload.single('file'), createPost);
-router.route('/:id').get(getPost).patch(authMiddleware, updatePost).delete(authMiddleware, deletePost);
+router.route('/:id').get(getPost).patch(authMiddleware, upload.single('file'), updatePost).delete(authMiddleware, deletePost);
 
 module.exports = router;

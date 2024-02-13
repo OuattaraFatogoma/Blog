@@ -18,7 +18,7 @@ const createPost = async(req, res) =>{
     const cover = newFilename.replace("assets", "http://localhost:5000").replace(/\\/g,"/");
     const postValues = {...req.body, cover, author};
     const post = await Posts.create(postValues);
-    res.status(StatusCodes.CREATED).send({post});
+    res.status(StatusCodes.CREATED).send({post, message:"Post created successfully"});
 }
 
 const getPost = async(req, res) =>{
@@ -36,7 +36,6 @@ const updatePost = async(req, res) =>{
 
     let postValues = req.body;
     const image = req.file;
-
     if(image){
         const extension = image.originalname.split('.')[1];
         const newFilename = image.path + '.' + extension;
@@ -47,11 +46,10 @@ const updatePost = async(req, res) =>{
         postValues = {...postValues, cover};
     }
     const postUpdate = await Posts.findOneAndUpdate({_id: postId}, postValues, {new: true, runValidators: true});
-    res.status(StatusCodes.OK).send({postUpdate});
+    res.status(StatusCodes.OK).send({post: postUpdate});
 }
 
 const deletePost = async(req, res) =>{
-    console.log(req.body);
     const author = req.userId;
     const postId = req.params.id;
     const post = await Posts.findById(postId);
@@ -59,7 +57,7 @@ const deletePost = async(req, res) =>{
     if(post.author != author) return res.status(StatusCodes.UNAUTHORIZED).send({message: 'Not authorized'});
 
     const postdelete = await Posts.findOneAndDelete({_id: postId});
-    res.status(StatusCodes.OK).send({postdelete});
+    res.status(StatusCodes.OK).send({post: postdelete});
 }
 
 module.exports = {getAllPosts, createPost, getPost, updatePost, deletePost}
