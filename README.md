@@ -38,15 +38,15 @@ fields:
 #### GET
 
 #### POST
-..* /api/v1/users/register (register a reader or a writer)
-..* /api/v1/users/login (login)
-..* /api/v1/users/logout (logout)
+* /api/v1/users/register (register a reader or a writer)
+* /api/v1/users/login (login)
+* /api/v1/users/logout (logout)
 
 #### PATCH
-..* /api/v1/users/update (update user informations)
+* /api/v1/users/update (update user informations)
 
 #### DELETE
-..* /api/v1/users/delete (delete user)
+* /api/v1/users/delete (delete user)
 
 
 ### Blog Posts
@@ -65,14 +65,14 @@ fields:
 }
 ```
 #### GET
-..* /api/v1/posts/ (get all posts)
-..* /api/v1/posts/:id (get a single post)
+* /api/v1/posts/ (get all posts)
+* /api/v1/posts/:id (get a single post)
 
 #### POST
-..* /api/v1/posts/ (post a new post)
+* /api/v1/posts/ (post a new post)
 
 #### PATCH
-..* /api/v1/posts/:id (update a post)
+* /api/v1/posts/:id (update a post)
 
 #### DELETE
-..* /api/v1/posts/:id (delete a post)
+* /api/v1/posts/:id (delete a post)
