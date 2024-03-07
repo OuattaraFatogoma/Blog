@@ -23,9 +23,10 @@ I wanted to apply my new knowledge by building this project. In the future i int
 1. cors to enable CORS 
 
 ## All available routes
-### user
+### User (reader or writer)
 
-```fields:
+``` 
+fields:
 {
     _id: String,
     username: String,
@@ -34,9 +35,9 @@ I wanted to apply my new knowledge by building this project. In the future i int
     role: String,
 }
 ```
-#### Get
+#### GET
 
-#### Post
+#### POST
 ..* /api/v1/users/register (register a reader or a writer)
 ..* /api/v1/users/login (login)
 ..* /api/v1/users/logout (logout)
@@ -48,9 +49,10 @@ I wanted to apply my new knowledge by building this project. In the future i int
 ..* /api/v1/users/delete (delete user)
 
 
-### post
+### Blog Posts
 
-```fields:
+``` 
+fields:
 {
     _id: String,
     title: String,
@@ -62,11 +64,11 @@ I wanted to apply my new knowledge by building this project. In the future i int
     updated_at: Date,
 }
 ```
-#### Get
+#### GET
 ..* /api/v1/posts/ (get all posts)
 ..* /api/v1/posts/:id (get a single post)
 
-#### Post
+#### POST
 ..* /api/v1/posts/ (post a new post)
 
 #### PATCH
