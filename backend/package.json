@@ -18,9 +18,9 @@
   "description": "blog Api",
   "main": "app.js",
   "scripts": {
-    "start": "NODE_ENV=development ./node_modules/.bin/netlify-lambda serve src",
+    "start": "node app.js",
     "dev": "nodemon app.js",
-    "build": "NODE_ENV=production ./node_modules/.bin/netlify-lambda build src"
+    "build": "node build src"
   },
   "author": "Fatogoma",
   "license": "ISC"
