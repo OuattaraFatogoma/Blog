@@ -42,7 +42,7 @@ const updatePost = async(req, res) =>{
         fs.rename(image.path, newFilename, function (err) {
             if (err) throw err;
         });
-        const cover = newFilename.replace("assets", "http://localhost:5000").replace(/\\/g,"/");
+        const cover = newFilename.replace("assets", "https://api-petitblogger.onrender.com").replace(/\\/g,"/");
         postValues = {...postValues, cover};
     }
     const postUpdate = await Posts.findOneAndUpdate({_id: postId}, postValues, {new: true, runValidators: true});
