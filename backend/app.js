@@ -3,6 +3,7 @@ require('express-async-errors');
 const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
+import serverless from "serverless-http";
 
 // import routes
 const usersRoutes = require('./routes/users');
@@ -23,8 +24,8 @@ app.use(express.static(path.join(__dirname, 'assets')));
 app.use(cors());
 
 // routes 
-app.use("/api/v1/users", usersRoutes);
-app.use("/api/v1/posts", postsRoutes);
+app.use("/.netlify/functions/api/v1/users", usersRoutes);
+app.use("/.netlify/functions/api/v1/posts", postsRoutes);
 
 app.use(errorHandlerMiddleware);
 app.use(notFoundMiddleware);
@@ -40,3 +41,5 @@ const start = async() => {
 }
 
 start();
+
+export const handler = serverless(app);
