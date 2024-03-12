@@ -10,7 +10,7 @@ function RegisterForm() {
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("reader");
   const navigate = useNavigate();
-  const url = "http://localhost:5000/api/v1/users/register";
+  const url = "https://api-petitblogger.onrender.com/api/v1/users/register";
 
   const handleRegistration = async(e) => {
     e.preventDefault();

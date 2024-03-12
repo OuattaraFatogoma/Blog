@@ -8,7 +8,7 @@ function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const url = "http://localhost:5000/api/v1/users/login";
+  const url = "https://api-petitblogger.onrender.com/api/v1/users/login";
 
   const handleLogin = async(e) => {
     e.preventDefault();

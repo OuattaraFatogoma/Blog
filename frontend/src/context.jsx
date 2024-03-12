@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 
 const AppContext = createContext();
-const url = "http://localhost:5000/api/v1/posts";
+const url = "https://api-petitblogger.onrender.com/api/v1/posts";
 
 const data = JSON.parse(window.localStorage.getItem("data"));
 

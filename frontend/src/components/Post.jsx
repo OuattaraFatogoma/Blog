@@ -7,7 +7,7 @@ import { useGlobalContext } from '../context';
 
 function Post() {
   const {user} = useGlobalContext();
-  const url = "http://localhost:5000/api/v1/posts/"
+  const url = "https://api-petitblogger.onrender.com/api/v1/posts/"
   const [post, setPost] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const {id} = useParams();

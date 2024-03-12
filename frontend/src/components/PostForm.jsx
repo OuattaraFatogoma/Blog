@@ -12,7 +12,7 @@ function PostForm() {
   const [file, setFile] = useState(null);
   const [content, setContent] = useState("");
   const navigate = useNavigate();
-  const url = "http://localhost:5000/api/v1/posts/";
+  const url = "https://api-petitblogger.onrender.com/api/v1/posts/";
   const {token} = JSON.parse(window.localStorage.getItem("data"));
 
   const fetchPost = async () =>{
