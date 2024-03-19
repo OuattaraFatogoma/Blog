@@ -15,7 +15,7 @@ const createPost = async(req, res) =>{
     fs.rename(image.path, newFilename, function (err) {
         if (err) throw err;
     });
-    const cover = newFilename.replace("assets", "http://localhost:5000").replace(/\\/g,"/");
+    const cover = newFilename.replace("assets", "https://api-petitblogger.onrender.com").replace(/\\/g,"/");
     const postValues = {...req.body, cover, author};
     const post = await Posts.create(postValues);
     res.status(StatusCodes.CREATED).send({post, message:"Post created successfully"});
